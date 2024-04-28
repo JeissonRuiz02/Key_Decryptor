@@ -2,7 +2,53 @@
 
 from collections import defaultdict, deque
 
+def validate_file_contents(filepath):
+    """
+    Valida que cada línea del archivo dado tenga exactamente tres caracteres numéricos.
+
+      Esta función lee del archivo especificado y verifica cada línea para asegurarse de que contenga
+      exactamente tres caracteres y que todos los caracteres sean dígitos. Esto se utiliza para validar
+      el formato de los datos antes de procesarlos para extraer el código secreto.
+
+      Parámetros:
+      - filepath (str): Ruta al archivo a validar.
+
+      Devoluciones:
+      - bool: Verdadero si todas las líneas son válidas, Falso en caso contrario.
+    """
+
+    # Trata de abrir y leer el archivo
+    try:
+        with open(filepath, 'r') as file:
+            lines = file.readlines()  # Lee todas las lineas del archivo
+    except IOError as e:
+        # Si hay un error de IO (por ejemplo, archivo no encontrado, problema de permiso), imprima el error y devuelva Falso
+        print(f"Error al abrir o leer el archivo: {e}")
+        return False
+
+    # Iterar sobre cada línea leída del archivo
+    for line in lines:
+        stripped_line = line.strip()  # Elimine los espacios en blanco iniciales o finales
+        
+        # Compruebe si la línea tiene exactamente tres caracteres y todos son dígitos
+        if len(stripped_line) != 3 or not stripped_line.isdigit():
+            return False  # Si alguna línea no se ajusta, devuelve False inmediatamente
+
+    # Si todas las líneas se ajustan al formato esperado, devuelve Verdadero
+    return True
+
 def process_file(filepath):
+
+    """
+   Procese el archivo para determinar el código secreto más corto de los intentos de inicio de sesión exitosos.
+
+     Parámetros:
+     - filepath (str): ruta al archivo que contiene los intentos de inicio de sesión.
+
+     Devoluciones:
+     - str: el código secreto más corto deducido del archivo.
+    """
+     
     # Leer el archivo y construir el grafo
     with open(filepath, 'r') as file:
         lines = file.read().strip().split()
