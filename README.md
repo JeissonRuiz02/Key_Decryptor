@@ -40,6 +40,75 @@ curl --location 'http://127.0.0.1:5000/upload' \
 ```
 La API te retornará el código secreto deducido o un mensaje de error si el archivo no cumple con el formato esperado.
 
+## API /upload
+
+## Endpoint: Subida de Archivos
+
+### POST /upload
+
+Este endpoint permite a los usuarios subir archivos de texto que contienen secuencias de tres caracteres numéricos. Cada línea del archivo debe contener exactamente tres caracteres numéricos. El sistema procesará estas secuencias para deducir un código secreto basado en un criterio de ordenamiento topológico.
+
+#### Parámetros:
+
+- **file** (multipart/form-data): El archivo `.txt` que se desea subir. Debe estar codificado como `multipart/form-data`.
+
+#### Respuestas:
+
+##### 200 OK
+- **Descripción**: La solicitud fue exitosa y el código secreto ha sido deducido correctamente.
+- **Cuerpo**:
+  ```json
+  {
+    "message": "Éxito",
+    "code": "Código Secreto Deduced"
+  }
+
+Nota: "Código Secreto Deduced" será reemplazado por el código real deducido del archivo proporcionado.
+
+Para documentar adecuadamente tu endpoint de Flask, es importante incluir información detallada sobre su función, uso, parámetros aceptados y los tipos de respuestas que los clientes pueden esperar. A continuación, te muestro cómo puedes estructurar la documentación del endpoint /upload en tu README.md o en un documento dedicado de la API.
+
+Documentación del Endpoint /upload
+markdown
+Copy code
+## Endpoint: Subida de Archivos
+
+### POST /upload
+
+Este endpoint permite a los usuarios subir archivos de texto que contienen secuencias de tres caracteres numéricos. Cada línea del archivo debe contener exactamente tres caracteres numéricos. El sistema procesará estas secuencias para deducir un código secreto basado en un criterio de ordenamiento topológico.
+
+#### Parámetros:
+
+- **file** (multipart/form-data): El archivo `.txt` que se desea subir. Debe estar codificado como `multipart/form-data`.
+
+#### Respuestas:
+
+##### 200 OK
+- **Descripción**: La solicitud fue exitosa y el código secreto ha sido deducido correctamente.
+- **Cuerpo**:
+  ```json
+  {
+    "message": "Éxito",
+    "code": "Código Secreto Deduced"
+  }
+  ```
+Nota: "Código Secreto Deduced" será reemplazado por el código real deducido del archivo proporcionado.
+
+### 400 Bad Request
+Descripción: El archivo subido no cumple con el formato esperado o no contiene únicamente caracteres numéricos en secuencias de tres.
+```json
+{
+  "message": "Contenido del archivo inválido, cada línea debe tener exactamente 3 caracteres numéricos"
+}
+```
+### 500 Internal Server Error
+Descripción: Hubo un error al intentar guardar o procesar el archivo.
+Cuerpo:
+```json
+{
+  "message": "Error interno del servidor. Por favor, intente de nuevo más tarde."
+}
+```
+
 # Desarrollo
 ## Ejecutar pruebas
 Para ejecutar las pruebas automatizadas para este sistema:
