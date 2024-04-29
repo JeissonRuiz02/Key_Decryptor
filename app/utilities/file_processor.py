@@ -22,7 +22,7 @@ def validate_file_contents(filepath):
         with open(filepath, 'r') as file:
             lines = file.readlines()  # Lee todas las lineas del archivo
     except IOError as e:
-        # Si hay un error de IO (por ejemplo, archivo no encontrado, problema de permiso), imprima el error y devuelva Falso
+        # Si hay un error de IO (por ejemplo, archivo no encontrado, problema de permiso), imprime el error y devuelva Falso
         print(f"Error al abrir o leer el archivo: {e}")
         return False
 
@@ -30,7 +30,7 @@ def validate_file_contents(filepath):
     for line in lines:
         stripped_line = line.strip()  # Elimine los espacios en blanco iniciales o finales
         
-        # Compruebe si la línea tiene exactamente tres caracteres y todos son dígitos
+        # Comprueba si la línea tiene exactamente tres caracteres y todos son dígitos
         if len(stripped_line) != 3 or not stripped_line.isdigit():
             return False  # Si alguna línea no se ajusta, devuelve False inmediatamente
 
@@ -93,4 +93,4 @@ def topological_sort(graph, in_degree):
     if len(top_order) == len(in_degree):
         return ''.join(top_order)
     else:
-        raise ValueError("There is a cycle in the graph, check the input data")
+        raise ValueError("Hay un ciclo en el gráfico, verifique los datos de entrada.")
