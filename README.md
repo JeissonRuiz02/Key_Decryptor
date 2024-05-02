@@ -65,7 +65,7 @@ Este endpoint permite a los usuarios subir archivos de texto que contienen secue
 
 Nota: "Código Secreto Deduced" será reemplazado por el código real deducido del archivo proporcionado.
 
-Para documentar adecuadamente tu endpoint de Flask, es importante incluir información detallada sobre su función, uso, parámetros aceptados y los tipos de respuestas que los clientes pueden esperar. A continuación, te muestro cómo puedes estructurar la documentación del endpoint /upload en tu README.md o en un documento dedicado de la API.
+
 
 Documentación del Endpoint /upload
 markdown
